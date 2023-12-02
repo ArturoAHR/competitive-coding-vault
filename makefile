@@ -11,21 +11,21 @@ TEMPLATE = template.cpp
 SRC := $(shell find . -name '*.cpp' -type f -printf '%T@ %p\n' | sort -k 1nr | cut -d' ' -f2- | head -1)
 
 # Directory of the source file
-DIR := $(dir "$(SRC)")
+DIR := $(dir $(SRC))
 
 # Target file will be in the same directory as the source but with .out extension
 TARGET := $(SRC:.cpp=.out)
 
 # Default target
-all: "$(TARGET)"
+all: $(TARGET)
 
 # Rule to build the executable
-"$(TARGET)": "$(SRC)"
-	$(CXX) $(CXXFLAGS) -o "$@" "$<"
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $@ $<
 
 # Rule to run the executable
-run: "$(TARGET)"
-	./"$(TARGET)"
+run: $(TARGET)
+	./$(TARGET)
 
 # Rule to create a new problem file from the template
 new:
@@ -39,6 +39,7 @@ endif
 # Clean up
 clean:
 	find . -type f -name '*.out' -exec rm {} +
+	clear
 
 # Prevent make from doing something with a file named all, run, or new
 .PHONY: all run new clean
