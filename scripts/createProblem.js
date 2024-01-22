@@ -8,7 +8,13 @@ if (!problemName) {
 }
 
 const dirName = problemName;
-fs.mkdirSync(dirName, { recursive: true });
+
+if (fs.existsSync(dirName)) {
+  console.error(`Directory already exists: ${dirName}`);
+  process.exit(1);
+} else {
+  fs.mkdirSync(dirName, { recursive: true });
+}
 
 const tsFileTemplate = `/*
  * <Problem title here> 
@@ -18,6 +24,13 @@ const tsFileTemplate = `/*
 `
 
 const tsFileName = path.join(dirName, `${problemName}.ts`);
-fs.writeFileSync(tsFileName, tsFileTemplate);
+
+if (fs.existsSync(tsFileName)) {
+  console.error(`File already exists: ${tsFileName}`);
+  process.exit(1);
+} else {
+  fs.writeFileSync(tsFileName, tsFileTemplate);
+  console.log(`Created directory and TypeScript file: ${tsFileName}`);
+}
 
 console.log(`Created directory and TypeScript file: ${tsFileName}`);
