@@ -10,7 +10,14 @@ if (!problemName) {
 const dirName = problemName;
 fs.mkdirSync(dirName, { recursive: true });
 
+const tsFileTemplate = `/*
+ * <Problem title here> 
+ * <Problem Link here>
+*/
+
+`
+
 const tsFileName = path.join(dirName, `${problemName}.ts`);
-fs.writeFileSync(tsFileName, '');
+fs.writeFileSync(tsFileName, tsFileTemplate);
 
 console.log(`Created directory and TypeScript file: ${tsFileName}`);
