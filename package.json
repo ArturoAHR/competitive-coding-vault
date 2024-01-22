@@ -4,7 +4,8 @@
   "description": "A repository where I store my competitive coding and leetcode solutions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "new-problem": "node ./scripts/createProblem.js"
   },
   "author": "ArturoAHR",
   "license": "MIT",
