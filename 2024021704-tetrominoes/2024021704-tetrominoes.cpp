@@ -15,7 +15,7 @@ typedef double db;
 
 using namespace std;
 
-int dx[8] = {0, 1, 0 - 1, 1, 1, -1, -1};
+int dx[8] = {0, 1, 0, -1, 1, 1, -1, -1};
 int dy[8] = {1, 0, -1, 0, 1, -1, 1, -1};
 
 const char VISITED = 'V';
@@ -139,16 +139,49 @@ void invalidateShape(int x, int y) {
   }
 }
 
+void revertVisitedBlocks(int x, int y, int rotation) {
+  vector<string> tetrominoSchematic = tetrominoSchematics[t][rotation];
+
+  int offset = 0;
+  for (int i = 0; i < sz(tetrominoSchematic); i++) {
+    if (tetrominoSchematic[0][i] == BLOCK)
+      break;
+    offset++;
+  }
+
+  y -= offset;
+
+  for (int i = x; i < x + sz(tetrominoSchematic); i++) {
+    for (int j = y; j < y + sz(tetrominoSchematic[i - x]); j++) {
+      if (isOutOfBounds(i, j))
+        continue;
+
+      if (image[i][j] == VISITED)
+        image[i][j] = BLOCK;
+    }
+  }
+}
+
 bool matchShape(int x, int y, int rotation) {
   vector<string> tetrominoSchematic = tetrominoSchematics[t][rotation];
+
+  int offset = 0;
+  for (int i = 0; i < sz(tetrominoSchematic); i++) {
+    if (tetrominoSchematic[0][i] == BLOCK)
+      break;
+    offset++;
+  }
+
+  y -= offset;
 
   for (int i = x; i < x + sz(tetrominoSchematic); i++) {
     for (int j = y; j < y + sz(tetrominoSchematic[i - x]); j++) {
       if (isOutOfBounds(i, j))
         return false;
 
-      if (image[i][j] != tetrominoSchematic[i - x][j - y])
+      if (image[i][j] != tetrominoSchematic[i - x][j - y]) {
         return false;
+      }
 
       if (image[i][j] == BLOCK)
         image[i][j] = VISITED;
@@ -157,18 +190,9 @@ bool matchShape(int x, int y, int rotation) {
 
   for (int i = x; i < x + sz(tetrominoSchematic); i++) {
     for (int j = y; j < y + sz(tetrominoSchematic[i - x]); j++) {
-      if (image[x][y] == VISITED && isSurroundedByBlocks(i, j))
+      if (image[i][j] == VISITED && isSurroundedByBlocks(i, j)) {
         return false;
-    }
-  }
-
-  for (int i = x; i < x + sz(tetrominoSchematic); i++) {
-    for (int j = y; j < y + sz(tetrominoSchematic[i - x]); j++) {
-      if (isOutOfBounds(i, j))
-        return false;
-
-      if (image[i][j] == VISITED)
-        image[i][j] = BLOCK;
+      }
     }
   }
 
@@ -211,16 +235,17 @@ int main() {
         bool matches = false;
         for (int k = 0; k < 4; k++) {
           matches = matches || matchShape(i, j, k);
+          revertVisitedBlocks(i, j, k);
         }
 
-        if (!matches) {
-          invalidateShape(i, j);
+        if (matches) {
+          count++;
         }
+
+        invalidateShape(i, j);
       }
     }
   }
-
-  printImage();
 
   cout << count << '\n';
 }
