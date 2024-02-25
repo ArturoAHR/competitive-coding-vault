@@ -15,8 +15,8 @@ typedef double db;
 
 using namespace std;
 
-int t, k, x, l, r;
-vector<ll> memo(31, -1);
+ll t, k, x, l, r;
+vector<ll> memo(93, -1);
 
 ll f(ll i) {
   if (memo[i] != -1)
@@ -31,11 +31,16 @@ ll f(ll i) {
 void solve() {
   cin >> k >> x >> l >> r;
 
-  int count = 0;
-  for (int i = l; i <= r; i++) {
-    if (memo[i] % k == 0)
-      count++;
+  ll divisibleFibonacciIndex = 0;
+  for (ll i = 1; i < sz(memo); i++) {
+    if (memo[i] % k == 0) {
+      divisibleFibonacciIndex = i;
+      break;
+    }
   }
+
+  ll count = (r / divisibleFibonacciIndex) - (l / divisibleFibonacciIndex) +
+             (l % divisibleFibonacciIndex == 0);
 
   cout << count << '\n';
 }
@@ -45,7 +50,7 @@ int main() {
 
   memo[0] = 0;
   memo[1] = 1;
-  f(30);
+  f(sz(memo) - 1);
 
   cin >> t;
 
