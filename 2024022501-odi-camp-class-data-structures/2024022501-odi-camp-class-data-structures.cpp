@@ -549,7 +549,7 @@ void maps() {
 
   /*
     Another difference between maps and multimaps is that we cannot directly
-    access the key values, as them might be duplicated.
+    access the key values, as they might be duplicated.
   */
   mm.insert({"hello", 32});
   mm.insert({"hello", 30});
@@ -559,13 +559,26 @@ void maps() {
   mm.insert({"see you", 28});
 
   /*
-    To access them we'll either need to use pointers or do a foreach loop.
-    In each iteration we will receive a pair object, its first attribute
-    will be the key and the second the value for that key.
+    To access the range of values that contain the same key we can use
+    `equal_range`. This method will give us a pair of pointers to the first
+    element and to the last element that has the key provided. Each element will
+    be a pair with the key and the value.
+  */
+  auto range = mm.equal_range("hello");
+
+  for (auto it = range.first; it != range.second; it++) {
+    cout << it->first << ' ' << it->second << '\n';
+  }
+  cout << '\n';
+
+  /*
+    For an alternative way to access elements we'll either need to use begin/end
+    pointers or do a foreach loop.
   */
   for (auto v : mm) {
     cout << v.first << ' ' << v.second << '\n';
   }
+  cout << '\n';
 
   /*
     Like with multisets, erasing a key will erase all its instances in the
