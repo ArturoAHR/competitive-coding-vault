@@ -541,7 +541,7 @@ void maps() {
   cout << '\n';
 
   /*
-    Multimaps is what multisets are to sets, they can store multiple elements
+    Multimaps are what multisets are to sets, they can store multiple elements
     under the same key.
   */
 
