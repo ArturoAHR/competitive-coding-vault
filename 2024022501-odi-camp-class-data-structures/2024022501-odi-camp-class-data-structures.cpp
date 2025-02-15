@@ -406,8 +406,8 @@ void priorityQueues() {
   cout << pq.empty() << '\n';
   cout << '\n';
 
-  pq.pop(); // pq: 10 5 4 -1. Removing elements from a priority queue has O(1)
-            // time complexity.
+  pq.pop(); // pq: 10 5 4 -1. Removing elements from a priority queue has O(log
+            // n) time complexity.
 
   cout << pq.top() << '\n'; // 10
   cout << '\n';
