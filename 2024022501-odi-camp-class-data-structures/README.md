@@ -17,13 +17,13 @@
 - array https://codeforces.com/group/MWSDmqGsZm/contest/219774/problem/K
 - array https://codeforces.com/group/MWSDmqGsZm/contest/219774/problem/Y
 - std::vector https://codeforces.com/group/isP4JMZTix/contest/392597/problem/A
+- std::stack https://codeforces.com/group/isP4JMZTix/contest/392597/problem/C
+- std::queue https://codeforces.com/group/isP4JMZTix/contest/392597/problem/G
 - std::set https://codeforces.com/group/isP4JMZTix/contest/392597/problem/E
 - std::set https://codeforces.com/group/isP4JMZTix/contest/392597/problem/D
-- std::multiset https://codeforces.com/group/isP4JMZTix/contest/392597/problem/F
-- std::stack https://codeforces.com/group/isP4JMZTix/contest/392597/problem/C
-- std::map https://codeforces.com/group/isP4JMZTix/contest/392597/problem/B
-- std::queue https://codeforces.com/group/isP4JMZTix/contest/392597/problem/G
 - std::priority_queue https://codeforces.com/group/isP4JMZTix/contest/392597/problem/H
+- std::multiset https://codeforces.com/group/isP4JMZTix/contest/392597/problem/F
+- std::map https://codeforces.com/group/isP4JMZTix/contest/392597/problem/B
 - std::struct https://codeforces.com/group/isP4JMZTix/contest/392597/problem/V
 - std::max and std::min https://codeforces.com/group/MWSDmqGsZm/contest/219158/problem/K
 - std::accumulate https://codeforces.com/group/MWSDmqGsZm/contest/219158/problem/G
