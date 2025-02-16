@@ -1,0 +1,18 @@
+[
+  // Compile and run a new executable
+  {
+		"key": "f5",
+		"command": "terminalCommandKeys.run",
+		"args": {
+				"cmd": "make clean && make run"
+		}
+	},
+	// Run last generated executable
+  {
+		"key": "f6",
+		"command": "terminalCommandKeys.run",
+		"args": {
+				"cmd": "make run"
+		}
+	}
+]
