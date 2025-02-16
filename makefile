@@ -1,5 +1,3 @@
-# Makefile for a simple competitive programming environment with subdirectories
-
 # Compiler settings
 CXX = g++
 CXXFLAGS = -Wall -g -std=c++17
@@ -19,15 +17,18 @@ TARGET := $(SRC:.cpp=.out)
 # Default target
 all: $(TARGET)
 
-# Rule to build the executable
+# Build the executable
 $(TARGET): $(SRC)
 	$(CXX) $(CXXFLAGS) -o $@ $<
 
-# Rule to run the executable
+# Builds the executable if there isn't one already
+build: $(TARGET)
+
+# Build and run the executable
 run: $(TARGET)
 	./$(TARGET)
 
-# Rule to create a new problem file from the template
+# Create a new problem file from the template
 new:
 ifndef PROBLEM
 	$(error PROBLEM is not set. Usage: make new PROBLEM=problem_name)
@@ -42,4 +43,4 @@ clean:
 	clear
 
 # Prevent make from doing something with a file named all, run, or new
-.PHONY: all run new clean
+.PHONY: all run new clean build
