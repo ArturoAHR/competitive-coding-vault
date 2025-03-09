@@ -3,5 +3,7 @@
   "makefile.configureOnOpen": false,
   "files.associations": {
     "iostream": "cpp"
-  }
+  },
+  "editor.inlineSuggest.suppressSuggestions": false,
+  "editor.quickSuggestionsDelay": 100
 }
